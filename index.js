@@ -15,3 +15,5 @@ app.get('/', (req, res) => res.render('index',
 ));
 
 app.use('/home', require('./routes/home.js'));
+
+app.get('/admin', (req, res) => res.render('admin'));
