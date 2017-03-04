@@ -33,3 +33,8 @@ app.get('/admin/xoa/:index', (req, res) => {
   mangTin.splice(index, 1);
   res.redirect('/admin');
 });
+
+app.get('/admin/sua/:index', (req, res) => {
+  let {index} = req.params;
+  res.render('update', mangTin[index]);
+});

@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Update</title>
+    </head>
+
+    <body>
+        <form method="POST" action="/admin/update">
+            <input type="text" placeholder="Title" name="title" value="<%= title %>"/>
+            <br/><br/>
+            <input type="text" placeholder="Date" name="date" value="<%= date %>"/>
+            <br/><br/>
+            <input type="text" placeholder="Description" name="desc" value="<%= desc %>"/>
+            <br/><br/>
+            <input type="text" placeholder="Image" name="image" value="<%= image %>"/>
+            <br/><br/>
+            <input type="submit" value="Add news"/>
+        </form>
+    </body>
+</html>
