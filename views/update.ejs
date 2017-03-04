@@ -5,13 +5,14 @@
 
     <body>
         <form method="POST" action="/admin/update">
-            <input type="text" placeholder="Title" name="title" value="<%= title %>"/>
+            <input type="hidden" value="<%= index %>" name="index"/>
+            <input type="text" placeholder="Title" name="title" value="<%= tin.title %>"/>
             <br/><br/>
-            <input type="text" placeholder="Date" name="date" value="<%= date %>"/>
+            <input type="text" placeholder="Date" name="date" value="<%= tin.date %>"/>
             <br/><br/>
-            <input type="text" placeholder="Description" name="desc" value="<%= desc %>"/>
+            <input type="text" placeholder="Description" name="desc" value="<%= tin.desc %>"/>
             <br/><br/>
-            <input type="text" placeholder="Image" name="image" value="<%= image %>"/>
+            <input type="text" placeholder="Image" name="image" value="<%= tin.mage %>"/>
             <br/><br/>
             <input type="submit" value="Add news"/>
         </form>

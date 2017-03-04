@@ -36,5 +36,5 @@ app.get('/admin/xoa/:index', (req, res) => {
 
 app.get('/admin/sua/:index', (req, res) => {
   let {index} = req.params;
-  res.render('update', mangTin[index]);
+  res.render('update', {tin: mangTin[index], index});
 });
