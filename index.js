@@ -26,4 +26,10 @@ app.post('/admin/news', parser, (req, res) => {
   let tin = new Tin(title, date, desc, image);
   mangTin.push(tin);
   res.redirect('/admin');
-})
+});
+
+app.get('/admin/xoa/:index', (req, res) => {
+  let {index} = req.params;
+  mangTin.splice(index, 1);
+  res.redirect('/admin');
+});
