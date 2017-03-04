@@ -34,4 +34,4 @@ let mangTin = [
   )
 ]
 
-module.exports = mangTin;
+module.exports = {mangTin, Tin};

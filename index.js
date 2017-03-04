@@ -5,7 +5,7 @@ app.set('views', './views');
 app.use(express.static('public'));
 app.listen(3000, () => console.log('Server started'));
 
-let mangTin = require('./Tin.js');
+let {mangTin, Tin} = require('./Tin.js');
 
 app.get('/', (req, res) => res.render('index',
   {
