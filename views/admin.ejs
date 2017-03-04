@@ -24,13 +24,15 @@
             <td>Ngày đăng</td>
             <td>Hình ảnh</td>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>Khoa Pham mo lop ReactNative</td>
-            <td>ReactNative la mot thu vien cua Facebook, chay da nen tang</td>
-            <td>16/3/2017</td>
-            <td><img src="1.png" width="100px" /></td>
-        </tr>
+        <%mangTin.forEach((tin, index) => {%>
+            <tr>
+                <td><%= index + 1 %></td>
+                <td><%= tin.title %></td>
+                <td><%= tin.desc %></td>
+                <td><%= tin.date %></td>
+                <td><img src="<%= tin.image %>" width="100px" /></td>
+            </tr>
+            <%})%>
     </table>
 </body>
 
