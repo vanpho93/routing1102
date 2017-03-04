@@ -23,6 +23,7 @@
             <td>Mô tả</td>
             <td>Ngày đăng</td>
             <td>Hình ảnh</td>
+            <td>Quản lý</td>
         </tr>
         <%mangTin.forEach((tin, index) => {%>
             <tr>
@@ -31,6 +32,10 @@
                 <td><%= tin.desc %></td>
                 <td><%= tin.date %></td>
                 <td><img src="<%= tin.image %>" width="100px" /></td>
+                <td>
+                    <a href="/admin/xoa/<%= index %>">Xoa</a>
+                    <a href="/admin/sua/<%= index %>">Sua</a>
+                </td>
             </tr>
             <%})%>
     </table>
