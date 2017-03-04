@@ -38,3 +38,10 @@ app.get('/admin/sua/:index', (req, res) => {
   let {index} = req.params;
   res.render('update', {tin: mangTin[index], index});
 });
+
+app.post('/admin/sua', parser, (req, res) => {
+  let {title, desc, date, image, index} = req.body;
+  let tin = new Tin(title, date, desc, image);
+  mangTin[index] = tin;
+  res.redirect('/admin');
+})

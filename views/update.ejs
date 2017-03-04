@@ -4,7 +4,7 @@
     </head>
 
     <body>
-        <form method="POST" action="/admin/update">
+        <form method="POST" action="/admin/sua">
             <input type="hidden" value="<%= index %>" name="index"/>
             <input type="text" placeholder="Title" name="title" value="<%= tin.title %>"/>
             <br/><br/>
@@ -12,9 +12,9 @@
             <br/><br/>
             <input type="text" placeholder="Description" name="desc" value="<%= tin.desc %>"/>
             <br/><br/>
-            <input type="text" placeholder="Image" name="image" value="<%= tin.mage %>"/>
+            <input type="text" placeholder="Image" name="image" value="<%= tin.image %>"/>
             <br/><br/>
-            <input type="submit" value="Add news"/>
+            <input type="submit" value="Update"/>
         </form>
     </body>
 </html>
