@@ -4,7 +4,7 @@
     </head>
 
     <body>
-        <form method="POST" action="/admin/sua">
+        <form method="POST" action="/admin/sua" enctype="multipart/form-data">
             <input type="hidden" value="<%= index %>" name="index"/>
             <input type="text" placeholder="Title" name="title" value="<%= tin.title %>"/>
             <br/><br/>
@@ -12,7 +12,8 @@
             <br/><br/>
             <input type="text" placeholder="Description" name="desc" value="<%= tin.desc %>"/>
             <br/><br/>
-            <input type="text" placeholder="Image" name="image" value="<%= tin.image %>"/>
+            <input type="file"name="avatar"/>
+            <img src="<%= tin.image %>"/>
             <br/><br/>
             <input type="submit" value="Update"/>
         </form>

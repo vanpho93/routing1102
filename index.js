@@ -2,6 +2,7 @@ let express = require('express');
 let app = express();
 app.set('view engine', 'ejs');
 app.set('views', './views');
+let upload = require('./upload.js');
 app.use(express.static('public'));
 app.listen(3000, () => console.log('Server started'));
 let parser = require('body-parser').urlencoded({extended: false});
@@ -39,9 +40,15 @@ app.get('/admin/sua/:index', (req, res) => {
   res.render('update', {tin: mangTin[index], index});
 });
 
-app.post('/admin/sua', parser, (req, res) => {
-  let {title, desc, date, image, index} = req.body;
-  let tin = new Tin(title, date, desc, image);
-  mangTin[index] = tin;
-  res.redirect('/admin');
-})
+//req.file.filename
+
+app.post('/admin/sua', (req, res) => {
+  upload(req, res, err => {
+    if(err) return res.send(err);
+    let {title, desc, date, index} = req.body;
+    let image = req.file.filename;
+    let tin = new Tin(title, date, desc, image);
+    mangTin[index] = tin;
+    res.redirect('/admin');
+  });
+});
