@@ -5,7 +5,7 @@ let storage = multer.diskStorage({
         cb(null, './public');
     },
     filename: function (req, file, cb){
-        cb(null, req.body.username + Date.now() + file.originalname);
+        cb(null, Date.now() + file.originalname);
     }
 });
 
@@ -17,10 +17,14 @@ function fileFilter (req, file, cb) {
     cb(new Error('Sai dinh dang file'));
 }
 
-let upload = multer({
+let uploadConfig = multer({
     storage, 
     limits: {fileSize: 1024 * 1024},
     fileFilter
-}).single('avatar'); //1111
+})
 
-module.exports = upload;
+let uploadSingle = fieldname => uploadConfig.single(fieldname); //1111
+
+let uploadArray = fieldname => uploadConfig.array(fieldname);
+
+module.exports = {uploadSingle, uploadArray};

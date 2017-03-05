@@ -2,7 +2,7 @@ let express = require('express');
 let app = express();
 app.set('view engine', 'ejs');
 app.set('views', './views');
-let upload = require('./upload.js');
+let { uploadSingle, uploadArray } = require('./upload.js');
 app.use(express.static('public'));
 app.listen(3000, () => console.log('Server started'));
 let parser = require('body-parser').urlencoded({extended: false});
@@ -43,12 +43,20 @@ app.get('/admin/sua/:index', (req, res) => {
 //req.file.filename
 
 app.post('/admin/sua', (req, res) => {
-  upload(req, res, err => {
+  uploadSingle('avatar')(req, res, err => {
     if(err) return res.send(err);
     let {title, desc, date, index} = req.body;
     let image = req.file.filename;
     let tin = new Tin(title, date, desc, image);
     mangTin[index] = tin;
     res.redirect('/admin');
+  });
+});
+
+app.get('/array', (req, res) => res.render('arrayfile'));
+
+app.post('/array', (req, res) => {
+  uploadArray('avatar')(req, res, err => {
+    res.send(req.files);
   });
 });
