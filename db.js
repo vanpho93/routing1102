@@ -32,5 +32,10 @@ function queryDB(sql, cb) {
     });
 }
 
+function removeNews(id, cb) {
+    let sql = `DELETE FROM "News" WHERE id = ${id}`
+    queryDB(sql, cb);
+}
+
 // queryDB('SELECT * FROM "News"', result => console.log(result));
-module.exports = queryDB;
+module.exports = { queryDB, removeNews };

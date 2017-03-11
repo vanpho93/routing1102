@@ -8,7 +8,7 @@ app.listen(3000, () => console.log('Server started'));
 let parser = require('body-parser').urlencoded({extended: false});
 
 let {mangTin, Tin} = require('./Tin.js');
-let queryDB = require('./db.js');
+let { queryDB, removeNews } = require('./db.js');
 
 app.get('/', (req, res) => {
   queryDB('SELECT * FROM "News"', (err, result) => {
@@ -41,8 +41,10 @@ app.post('/admin/news', parser, (req, res) => {
 
 app.get('/admin/xoa/:index', (req, res) => {
   let {index} = req.params;
-  mangTin.splice(index, 1);
-  res.redirect('/admin');
+  removeNews(index, (err, result) => {
+    if(err) res.send(err + '');
+    res.redirect('/admin');
+  });
 });
 
 app.get('/admin/sua/:index', (req, res) => {
