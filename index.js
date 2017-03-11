@@ -8,13 +8,17 @@ app.listen(3000, () => console.log('Server started'));
 let parser = require('body-parser').urlencoded({extended: false});
 
 let {mangTin, Tin} = require('./Tin.js');
+let queryDB = require('./db.js');
 
-app.get('/', (req, res) => res.render('index',
-  {
-    user: 'KhoaPham',
-    mangTin: mangTin
-  }
-));
+app.get('/', (req, res) => {
+  queryDB('SELECT * FROM "News"', (err, result) => {
+    if(err) return res.send(err + '', err);
+      res.render('index', {
+        user: 'KhoaPham',
+        mangTin: result.rows
+      });
+  });
+});
 
 app.use('/home', require('./routes/home.js'));
 
