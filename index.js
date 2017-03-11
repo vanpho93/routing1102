@@ -22,7 +22,13 @@ app.get('/', (req, res) => {
 
 app.use('/home', require('./routes/home.js'));
 
-app.get('/admin', (req, res) => res.render('admin', {mangTin}));
+app.get('/admin', (req, res) => {
+  queryDB('SELECT * FROM "News"', (err, result) => {
+    if(err) return res.send(err + '', err);
+      res.render('admin', {mangTin: result.rows});
+  });
+  // res.render('admin', {mangTin})
+});
 
 app.get('/admin/news', (req, res) => res.render('add'));
 
@@ -41,7 +47,8 @@ app.get('/admin/xoa/:index', (req, res) => {
 
 app.get('/admin/sua/:index', (req, res) => {
   let {index} = req.params;
-  res.render('update', {tin: mangTin[index], index});
+  let tin = mangTin[parseInt(index)];
+  res.render('update', {tin, index});
 });
 
 //req.file.filename
