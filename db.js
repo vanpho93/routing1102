@@ -37,5 +37,12 @@ function removeNews(id, cb) {
     queryDB(sql, cb);
 }
 
+function addNews(title, desc, date, image, cb) {
+    let sql = `INSERT INTO public."News"(
+	title, "desc", image, date)
+	VALUES ('${title}', '${desc}', '${image}','${date}')`;
+    queryDB(sql, cb);
+}
+
 // queryDB('SELECT * FROM "News"', result => console.log(result));
-module.exports = { queryDB, removeNews };
+module.exports = { queryDB, removeNews, addNews };
