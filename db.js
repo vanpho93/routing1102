@@ -46,8 +46,8 @@ function addNews(tin, cb) {
 }
 
 function updateNews(id, tin, cb) {
-    let {title, desc, image, date} = tin;
-    let sql = `UPDATE public."News"
+    const { title, desc, image, date } = tin;
+    const sql = `UPDATE public."News"
 	SET title='${title}', "desc"='${desc}', image='${image}', date='${date}'
 	WHERE id = ${id}`;
     queryDB(sql, cb);

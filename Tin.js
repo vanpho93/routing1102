@@ -1,5 +1,5 @@
 class Tin {
-  constructor(title, date, desc, image){
+  constructor(title, date, desc, image) {
     this.title = title;
     this.date = date;
     this.desc = desc;
@@ -7,7 +7,7 @@ class Tin {
   }
 }
 
-let mangTin = [
+const mangTin = [
   new Tin(
     'Khoa Pham mo lop ReactNative',
     '13/3/2017',
@@ -32,6 +32,6 @@ let mangTin = [
     'Chu nhat 18/2/2017, hoi thao duoc to chuc tai 92 Le Thi Rieng',
     '4.png'
   )
-]
+];
 
-module.exports = {mangTin, Tin};
+module.exports = { mangTin, Tin };

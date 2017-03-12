@@ -1,8 +1,9 @@
-let { removeNews } = require('../db.js');
+const { removeNews } = require('../db');
+
 module.exports = (req, res) => {
-  let {index} = req.params;
-  removeNews(index, (err, result) => {
-    if(err) res.send(err + '');
+  const { index } = req.params;
+  removeNews(index, (err) => {
+    if (err) res.send(`${err} `);
     res.redirect('/admin');
   });
-}
+};
