@@ -45,5 +45,25 @@ function addNews(tin, cb) {
     queryDB(sql, cb);
 }
 
+function updateNews(id, tin, cb) {
+    let {title, desc, image, date} = tin;
+    let sql = `UPDATE public."News"
+	SET title='${title}', "desc"='${desc}', image='${image}', date='${date}'
+	WHERE id = ${id}`;
+    queryDB(sql, cb);
+}
+
+function getNewsById(id, cb) {
+    let sql = `SELECT id, title, "desc", image, date
+	FROM public."News" WHERE id = ${id}`;
+    queryDB(sql, cb);
+}
+
 // queryDB('SELECT * FROM "News"', result => console.log(result));
-module.exports = { queryDB, removeNews, addNews };
+module.exports = { 
+    queryDB, 
+    removeNews, 
+    addNews, 
+    updateNews, 
+    getNewsById 
+};

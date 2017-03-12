@@ -8,7 +8,13 @@ app.listen(3000, () => console.log('Server started'));
 let parser = require('body-parser').urlencoded({extended: false});
 
 let {mangTin, Tin } = require('./Tin.js');
-let { queryDB, removeNews, addNews } = require('./db.js');
+let { 
+  queryDB, 
+  removeNews, 
+  addNews, 
+  updateNews, 
+  getNewsById
+} = require('./db.js');
 
 app.get('/', (req, res) => {
   queryDB('SELECT * FROM "News"', (err, result) => {
@@ -51,8 +57,12 @@ app.get('/admin/xoa/:index', (req, res) => {
 
 app.get('/admin/sua/:index', (req, res) => {
   let {index} = req.params;
-  let tin = mangTin[parseInt(index)];
-  res.render('update', {tin, index});
+  getNewsById(index, (err, result) => {
+    if(err || result.rows.length == 0 ) return res.send(err + '');
+    let {title, desc, image, date} = result.rows[0];
+    let tin = new Tin(title, date, desc, image);
+    res.render('update', {tin, index});
+  });
 });
 
 //req.file.filename

@@ -1,11 +1,13 @@
 <html>
     <head>
+        <base href="http://localhost:3000"/>
         <title>Update</title>
     </head>
 
     <body>
         <form method="POST" action="/admin/sua" enctype="multipart/form-data">
             <input type="hidden" value="<%= index %>" name="index"/>
+            <input type="hidden" value="<%= tin.image %>" name="old"/>
             <input type="text" placeholder="Title" name="title" value="<%= tin.title %>"/>
             <br/><br/>
             <input type="text" placeholder="Date" name="date" value="<%= tin.date %>"/>
@@ -13,9 +15,11 @@
             <input type="text" placeholder="Description" name="desc" value="<%= tin.desc %>"/>
             <br/><br/>
             <input type="file"name="avatar"/>
-            <img src="<%= tin.image %>"/>
             <br/><br/>
             <input type="submit" value="Update"/>
+            <hr/>
+            <img src="<%= tin.image %>"/>
+            <br/><br/>
         </form>
     </body>
 </html>
