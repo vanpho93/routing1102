@@ -37,7 +37,8 @@ function removeNews(id, cb) {
     queryDB(sql, cb);
 }
 
-function addNews(title, desc, date, image, cb) {
+function addNews(tin, cb) {
+    let {title, desc, image, date} = tin;
     let sql = `INSERT INTO public."News"(
 	title, "desc", image, date)
 	VALUES ('${title}', '${desc}', '${image}','${date}')`;

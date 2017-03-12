@@ -7,8 +7,8 @@ app.use(express.static('public'));
 app.listen(3000, () => console.log('Server started'));
 let parser = require('body-parser').urlencoded({extended: false});
 
-let {mangTin, Tin} = require('./Tin.js');
-let { queryDB, removeNews } = require('./db.js');
+let {mangTin, Tin } = require('./Tin.js');
+let { queryDB, removeNews, addNews } = require('./db.js');
 
 app.get('/', (req, res) => {
   queryDB('SELECT * FROM "News"', (err, result) => {
@@ -35,8 +35,10 @@ app.get('/admin/news', (req, res) => res.render('add'));
 app.post('/admin/news', parser, (req, res) => {
   let {title, desc, date, image} = req.body;
   let tin = new Tin(title, date, desc, image);
-  mangTin.push(tin);
-  res.redirect('/admin');
+  addNews(tin, (err, result) => {
+    if(err) return res.send(err+'');
+    res.redirect('/admin');
+  });
 });
 
 app.get('/admin/xoa/:index', (req, res) => {
